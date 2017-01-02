@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2a646f90-6173-4c9d-a0f1-63ee6e13fadf}</ProjectGuid>
+    <ProjectGuid>{2A646F90-6173-4C9D-A0F1-63EE6E13FADF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PclSystemInfo</RootNamespace>
@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -37,7 +37,16 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Enums\PclPlatformId.cs" />
+    <Compile Include="Modules\NullGraphics.cs" />
+    <Compile Include="Modules\AGraphics.cs" />
+    <Compile Include="Modules\NullMemory.cs" />
+    <Compile Include="Modules\AMemory.cs" />
+    <Compile Include="Modules\NullOperatingSystem.cs" />
+    <Compile Include="Modules\AOperatingSystem.cs" />
+    <Compile Include="MachineEnvironment.cs" />
+    <Compile Include="Modules\NullProcessor.cs" />
+    <Compile Include="Modules\AProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -48,5 +57,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
 </Project>
