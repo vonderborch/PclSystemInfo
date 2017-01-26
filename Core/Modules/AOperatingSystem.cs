@@ -34,6 +34,34 @@ namespace PclSystemInfo
         public abstract bool Is64Bit { get; }
 
         /// <summary>
+        /// Gets a value indicating whether this instance is linux.
+        /// </summary>
+        /// <value><c>true</c> if this instance is linux; otherwise, <c>false</c>.</value>
+        public bool IsLinux
+        {
+            get { return PlatformId == PclPlatformId.Unix; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is mac.
+        /// </summary>
+        /// <value><c>true</c> if this instance is mac; otherwise, <c>false</c>.</value>
+        public bool IsMac
+        {
+            get { return PlatformId == PclPlatformId.MaxOSX; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is windows.
+        /// </summary>
+        /// <value><c>true</c> if this instance is windows; otherwise, <c>false</c>.</value>
+        public bool IsWindows
+        {
+            get { return PlatformId == PclPlatformId.Win32NT || PlatformId == PclPlatformId.Win32S 
+                      || PlatformId == PclPlatformId.Win32Windows || PlatformId == PclPlatformId.WinCE; }
+        }
+
+        /// <summary>
         /// Gets the platform identifier.
         /// </summary>
         /// <value>The platform identifier.</value>

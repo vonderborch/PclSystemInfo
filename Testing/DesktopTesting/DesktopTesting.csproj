@@ -4,32 +4,32 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1BA0BA18-7DF7-4869-99B8-7199655CE5B9}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{039202E1-28A6-451B-B1E6-DA1260B92543}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PclSystemInfo</RootNamespace>
-    <AssemblyName>PclSystemInfo</AssemblyName>
+    <RootNamespace>DesktopTesting</RootNamespace>
+    <AssemblyName>DesktopTesting</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\debug\desktop\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DESKTOP</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\release\desktop\</OutputPath>
-    <DefineConstants>TRACE;DESKTOP</DefineConstants>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,44 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Core\Enums\PclPlatformId.cs">
-      <Link>Enums\PclPlatformId.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\MachineEnvironment.cs">
-      <Link>MachineEnvironment.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\AGraphics.cs">
-      <Link>Modules\AGraphics.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\AMemory.cs">
-      <Link>Modules\AMemory.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\AOperatingSystem.cs">
-      <Link>Modules\AOperatingSystem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\AProcessor.cs">
-      <Link>Modules\AProcessor.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\NullGraphics.cs">
-      <Link>Modules\NullGraphics.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\NullMemory.cs">
-      <Link>Modules\NullMemory.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\NullOperatingSystem.cs">
-      <Link>Modules\NullOperatingSystem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Core\Modules\NullProcessor.cs">
-      <Link>Modules\NullProcessor.cs</Link>
-    </Compile>
-    <Compile Include="WMI.cs" />
-    <Compile Include="Modules\Graphics.cs" />
-    <Compile Include="Modules\Memory.cs" />
-    <Compile Include="Modules\OperatingSystem.cs" />
-    <Compile Include="Modules\Processor.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Implementations\Desktop\Desktop.csproj">
+      <Project>{1ba0ba18-7df7-4869-99b8-7199655ce5b9}</Project>
+      <Name>Desktop</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

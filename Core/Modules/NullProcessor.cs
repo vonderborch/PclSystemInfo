@@ -8,5 +8,12 @@ namespace PclSystemInfo.Modules
 {
     public class NullProcessor : AProcessor
     {
+        public override string ProcessorName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

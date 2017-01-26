@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implemen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Implementations\Desktop\Desktop.csproj", "{1BA0BA18-7DF7-4869-99B8-7199655CE5B9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{16B7B85D-6D92-40FE-90C3-828878409F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopTesting", "Testing\DesktopTesting\DesktopTesting.csproj", "{039202E1-28A6-451B-B1E6-DA1260B92543}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +27,16 @@ Global
 		{1BA0BA18-7DF7-4869-99B8-7199655CE5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BA0BA18-7DF7-4869-99B8-7199655CE5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BA0BA18-7DF7-4869-99B8-7199655CE5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039202E1-28A6-451B-B1E6-DA1260B92543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039202E1-28A6-451B-B1E6-DA1260B92543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039202E1-28A6-451B-B1E6-DA1260B92543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039202E1-28A6-451B-B1E6-DA1260B92543}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1BA0BA18-7DF7-4869-99B8-7199655CE5B9} = {4186903E-A6F7-4EE9-B83B-F18E45B3B3A2}
+		{039202E1-28A6-451B-B1E6-DA1260B92543} = {16B7B85D-6D92-40FE-90C3-828878409F7F}
 	EndGlobalSection
 EndGlobal
