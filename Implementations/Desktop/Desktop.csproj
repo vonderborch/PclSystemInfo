@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Core\Classes\GraphicsCard.cs">
+      <Link>Classes\GraphicsCard.cs</Link>
+    </Compile>
     <Compile Include="..\..\Core\Enums\PclPlatformId.cs">
       <Link>Enums\PclPlatformId.cs</Link>
     </Compile>

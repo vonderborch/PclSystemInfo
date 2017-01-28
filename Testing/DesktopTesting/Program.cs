@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PclSystemInfo;
+using System.IO;
 
 namespace DesktopTesting
 {
@@ -11,12 +12,18 @@ namespace DesktopTesting
     {
         static void Main(string[] args)
         {
+            var x = WMI.GetAllWmiValuesForWmiComponent("Win32_Processor");
+            var y = WMI.GetAllWmiValuesForWmiComponent("Win32_VideoController");
 
-
-            var va = MachineEnvironment.Environment.CPU.Name;
-            var va2 = MachineEnvironment.Environment.CPU.LogicalCoreCount;
-            var va3 = MachineEnvironment.Environment.OS.PlatformId;
-            var va4 = MachineEnvironment.Environment.OS.IsWindows;
+            foreach (var yi in y)
+            {
+                File.AppendAllText(@"C:\Temp\Win32_VideoController.txt", yi.Key);
+                foreach (var yij in yi.Value)
+                {
+                    File.AppendAllText(@"C:\Temp\Win32_VideoController.txt", $"{yij.Key} : {yij.Value}{Environment.NewLine}");
+                }
+                File.AppendAllText(@"C:\Temp\Win32_VideoController.txt", $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}");
+            }
 
             if (true) ;
         }

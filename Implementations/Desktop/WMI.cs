@@ -39,20 +39,29 @@ namespace PclSystemInfo
         /// <returns>Dictionary&lt;System.String, System.String&gt;.</returns>
         ///  Changelog:
         ///             - 1.0.0 (01-23-2017) - Initial version.
-        public static Dictionary<string, string> GetAllWmiValuesForWmiComponent(string component)
+        public static Dictionary<string, Dictionary<string, string>> GetAllWmiValuesForWmiComponent(string component)
         {
             var searcher = WMI.LoadComponent(component);
             var searcherMethod = searcher.GetType().GetMethod("Get", new Type[0]);
             var getMethod = searcherMethod.Invoke(searcher, null);
 
-            var output = new Dictionary<string, string>();
+            var finalOutput = new Dictionary<string, Dictionary<string, string>>();
 
             PropertyInfo propertiesProperty = null;
+            PropertyInfo pathProperty = null;
             foreach (var child in (IEnumerable)getMethod)
             {
-                if (propertiesProperty == null) child.GetType().GetProperty("Properties");
+                if (propertiesProperty == null) propertiesProperty = child.GetType().GetProperty("Properties");
+                if (pathProperty == null) pathProperty = child.GetType().GetProperty("Path");
 
+                var output = new Dictionary<string, string>();
                 var properties = (IEnumerable)propertiesProperty.GetValue(child);
+                var path = pathProperty.GetValue(child).ToString();
+                
+                var deviceId = String.Empty;
+                var splitPath = path.Split('=');
+                if (splitPath.Length == 2)
+                    deviceId = splitPath[1].Replace("\"", "");
 
                 PropertyInfo propertyNameProperty = null;
                 PropertyInfo propertyValueProperty = null;
@@ -66,6 +75,41 @@ namespace PclSystemInfo
 
                     output.Add(propertyName.ToString(), propertyValue == null ? null : propertyValue.ToString());
                 }
+
+                finalOutput.Add(deviceId, output);
+            }
+
+            return finalOutput;
+        }
+
+        /// <summary>
+        /// Gets the component devices.
+        /// </summary>
+        /// <param name="component">The component.</param>
+        /// <returns>List&lt;System.String&gt;.</returns>
+        ///  Changelog:
+        ///             - 1.0.0 (01-23-2017) - Initial version.
+        public static List<string> GetComponentDevices(string component)
+        {
+            var searcher = WMI.LoadComponent(component);
+            var searcherMethod = searcher.GetType().GetMethod("Get", new Type[0]);
+            var getMethod = searcherMethod.Invoke(searcher, null);
+
+            var output = new List<string>();
+            
+            PropertyInfo pathProperty = null;
+            foreach (var child in (IEnumerable)getMethod)
+            {
+                if (pathProperty == null) pathProperty = child.GetType().GetProperty("Path");
+                
+                var path = pathProperty.GetValue(child).ToString();
+
+                var deviceId = String.Empty;
+                var splitPath = path.Split('=');
+                if (splitPath.Length == 2)
+                    deviceId = splitPath[1].Replace("\"", "");
+
+                output.Add(deviceId);
             }
 
             return output;
@@ -76,10 +120,11 @@ namespace PclSystemInfo
         /// </summary>
         /// <param name="component">The component.</param>
         /// <param name="key">The key.</param>
+        /// <param name="deviceId">The device ID.</param>
         /// <returns>KeyValuePair&lt;System.String, System.String&gt;.</returns>
         ///  Changelog:
         ///             - 1.0.0 (01-23-2017) - Initial version.
-        public static KeyValuePair<string, string> GetWmiComponentKeyValue(string component, string key)
+        public static KeyValuePair<string, string> GetWmiComponentKeyValue(string component, string key, string deviceId = null)
         {
             var searcher = WMI.LoadComponent(component);
             var searcherMethod = searcher.GetType().GetMethod("Get", new Type[0]);
@@ -88,11 +133,22 @@ namespace PclSystemInfo
             var output = new KeyValuePair<string, string>();
 
             PropertyInfo propertiesProperty = null;
+            PropertyInfo pathProperty = null;
             foreach (var child in (IEnumerable)getMethod)
             {
                 if (propertiesProperty == null) propertiesProperty = child.GetType().GetProperty("Properties");
+                if (pathProperty == null) pathProperty = child.GetType().GetProperty("Path");
 
                 var properties = (IEnumerable)propertiesProperty.GetValue(child);
+                var path = pathProperty.GetValue(child).ToString();
+
+                var device = String.Empty;
+                var splitPath = path.Split('=');
+                if (splitPath.Length == 2)
+                    device = splitPath[1].Replace("\"", "");
+
+                if (deviceId != null && device != deviceId)
+                    continue;
 
                 PropertyInfo propertyNameProperty = null;
                 PropertyInfo propertyValueProperty = null;
