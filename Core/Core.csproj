@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\PclPlatformId.cs" />
+    <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Modules\NullGraphics.cs" />
     <Compile Include="Modules\AGraphics.cs" />
     <Compile Include="Modules\NullMemory.cs" />

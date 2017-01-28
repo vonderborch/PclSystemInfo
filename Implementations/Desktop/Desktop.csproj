@@ -45,6 +45,9 @@
     <Compile Include="..\..\Core\Enums\PclPlatformId.cs">
       <Link>Enums\PclPlatformId.cs</Link>
     </Compile>
+    <Compile Include="..\..\Core\Helpers\Convertors.cs">
+      <Link>Helpers\Convertors.cs</Link>
+    </Compile>
     <Compile Include="..\..\Core\MachineEnvironment.cs">
       <Link>MachineEnvironment.cs</Link>
     </Compile>

@@ -13,8 +13,8 @@ namespace DesktopTesting
         {
 
 
-            var va = MachineEnvironment.Environment.CPU.ProcessorName;
-            var va2 = MachineEnvironment.Environment.OS.VersionString;
+            var va = MachineEnvironment.Environment.CPU.Name;
+            var va2 = MachineEnvironment.Environment.CPU.LogicalCoreCount;
             var va3 = MachineEnvironment.Environment.OS.PlatformId;
             var va4 = MachineEnvironment.Environment.OS.IsWindows;
 
