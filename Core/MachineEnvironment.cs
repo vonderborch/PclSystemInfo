@@ -46,7 +46,7 @@ namespace PclSystemInfo
         private AGraphics graphics;
 
         /// <summary>
-        /// Information on the Memory.
+        /// The memory
         /// </summary>
         private AMemory memory;
 
@@ -65,14 +65,14 @@ namespace PclSystemInfo
         private MachineEnvironment()
         {
 #if CORE
-            graphics = new NullGraphics();
             memory = new NullMemory();
             os = new NullOperatingSystem();
+            graphics = new NullGraphics();
             cpu = new NullProcessor();
 #else
-            graphics = new Graphics();
             memory = new Memory();
             os = new PclSystemInfo.Modules.OperatingSystem();
+            graphics = new Graphics();
             cpu = new Processor();
 #endif
         }
@@ -105,10 +105,6 @@ namespace PclSystemInfo
             get { return graphics; }
         }
 
-        /// <summary>
-        /// Gets the memory information.
-        /// </summary>
-        /// <value>The memory.</value>
         public AMemory Memory
         {
             get { return memory; }

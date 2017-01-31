@@ -120,9 +120,9 @@ namespace PclSystemInfo.Modules
                             case "AdapterCompatibility": gpu.Manufacturer = gcardValue.Value; break;
                             case "AdapterDACType": gpu.DacType = gcardValue.Value; break;
                             case "AdapterRAM":
-                                gpu.MemoryBytes = Convertors.StringToInt(gcardValue.Value, -1);
-                                gpu.MemoryMBytes = gpu.MemoryBytes / 1000000;
-                                gpu.MemoryGBytes = gpu.MemoryBytes / 1000f;
+                                gpu.MemoryBytes = Convertors.StringToLong(gcardValue.Value, 0);
+                                gpu.MemoryMBytes = gpu.MemoryBytes / (double)1000000;
+                                gpu.MemoryGBytes = gpu.MemoryBytes / (double)1000;
                                 break;
 
                             case "Name": gpu.Name = gcardValue.Value; break;

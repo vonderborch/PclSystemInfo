@@ -78,7 +78,7 @@ namespace PclSystemInfo.Classes
         /// <summary>
         /// The memory bytes
         /// </summary>
-        public int MemoryBytes;
+        public long MemoryBytes;
         /// <summary>
         /// The memory g bytes
         /// </summary>
@@ -86,7 +86,7 @@ namespace PclSystemInfo.Classes
         /// <summary>
         /// The memory m bytes
         /// </summary>
-        public int MemoryMBytes;
+        public double MemoryMBytes;
         /// <summary>
         /// The minimum refresh rate
         /// </summary>

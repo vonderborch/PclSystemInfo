@@ -16,6 +16,14 @@ namespace PclSystemInfo.Helpers
             return defaultValue;
         }
 
+        public static long StringToLong(string value, long defaultValue)
+        {
+            long output = 0;
+            if (long.TryParse(value, out output))
+                return output;
+            return defaultValue;
+        }
+
         public static double StringToDouble(string value, double defaultValue)
         {
             double output = 0;

@@ -12,17 +12,21 @@ namespace DesktopTesting
     {
         static void Main(string[] args)
         {
+            var a = MachineEnvironment.Environment.Memory.TotalBytes;
+
             var x = WMI.GetAllWmiValuesForWmiComponent("Win32_Processor");
             var y = WMI.GetAllWmiValuesForWmiComponent("Win32_VideoController");
+            var z = WMI.GetAllWmiValuesForWmiComponent("Win32_ComputerSystem");
 
-            foreach (var yi in y)
+            var file = @"C:\Temp\Win32_ComputerSystem.txt";
+            foreach (var yi in z)
             {
-                File.AppendAllText(@"C:\Temp\Win32_VideoController.txt", yi.Key);
+                File.AppendAllText(file, yi.Key);
                 foreach (var yij in yi.Value)
                 {
-                    File.AppendAllText(@"C:\Temp\Win32_VideoController.txt", $"{yij.Key} : {yij.Value}{Environment.NewLine}");
+                    File.AppendAllText(file, $"{yij.Key} : {yij.Value}{Environment.NewLine}");
                 }
-                File.AppendAllText(@"C:\Temp\Win32_VideoController.txt", $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}");
+                File.AppendAllText(file, $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}");
             }
 
             if (true) ;

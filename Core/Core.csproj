@@ -40,14 +40,14 @@
     <Compile Include="Classes\CPU.cs" />
     <Compile Include="Enums\PclPlatformId.cs" />
     <Compile Include="Helpers\Convertors.cs" />
+    <Compile Include="Modules\AMemory.cs" />
+    <Compile Include="Modules\NullMemory.cs" />
+    <Compile Include="Modules\NullProcessor.cs" />
     <Compile Include="Modules\NullGraphics.cs" />
     <Compile Include="Modules\AGraphics.cs" />
-    <Compile Include="Modules\NullMemory.cs" />
-    <Compile Include="Modules\AMemory.cs" />
     <Compile Include="Modules\NullOperatingSystem.cs" />
     <Compile Include="Modules\AOperatingSystem.cs" />
     <Compile Include="MachineEnvironment.cs" />
-    <Compile Include="Modules\NullProcessor.cs" />
     <Compile Include="Modules\AProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\GraphicsCard.cs" />

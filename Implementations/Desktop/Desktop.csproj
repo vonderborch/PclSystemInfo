@@ -82,9 +82,9 @@
       <Link>Modules\NullProcessor.cs</Link>
     </Compile>
     <Compile Include="FileParser.cs" />
+    <Compile Include="Modules\Memory.cs" />
     <Compile Include="WMI.cs" />
     <Compile Include="Modules\Graphics.cs" />
-    <Compile Include="Modules\Memory.cs" />
     <Compile Include="Modules\OperatingSystem.cs" />
     <Compile Include="Modules\Processor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
