@@ -3,10 +3,10 @@
 // Component        : Processor.cs
 // Author           : vonderborch
 // Created          : 01-01-2017
-// 
+//
 // Version          : 1.0.0
 // Last Modified By : vonderborch
-// Last Modified On : 01-27-2017
+// Last Modified On : 01-30-2017
 // ***********************************************************************
 // <copyright file="Processor.cs">
 //		Copyright ©  2017
@@ -15,11 +15,14 @@
 //      Defines the processor class.
 // </summary>
 //
-// Changelog: 
+// Changelog:
+//            - 1.0.0 (01-30-2017) - Revised how processor information is retrieved.
 //            - 1.0.0 (01-01-2017) - Initial version created.
 // ***********************************************************************
+using PclSystemInfo.Classes;
 using PclSystemInfo.Helpers;
 using System;
+using System.Collections.Generic;
 
 namespace PclSystemInfo.Modules
 {
@@ -38,202 +41,23 @@ namespace PclSystemInfo.Modules
 
         #endregion Private Fields
 
-        #region Public Constructors
+        #region Public Methods
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Processor"/> class.
+        /// Gets the processor names.
         /// </summary>
-        public Processor()
-        {
-        }
-
-        #endregion Public Constructors
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the size of the cache.
-        /// </summary>
-        /// <value>The size of the cache.</value>
-        public override int CacheSize
-        {
-            get { return Convertors.StringToInt(GetProcessorValue("L3CacheSize", "cache size"), -1); }
-        }
-
-        /// <summary>
-        /// Gets the clock speed.
-        /// </summary>
-        /// <value>The clock speed.</value>
-        public override double ClockSpeed
-        {
-            get { return Convertors.StringToDouble(GetProcessorValue("MaxClockSpeed", "cpu MHz"), 0); }
-        }
-
-        /// <summary>
-        /// Gets the core count.
-        /// </summary>
-        /// <value>The core count.</value>
-        public override int CoreCount
-        {
-            get { return Convertors.StringToInt(GetProcessorValue("NumberOfCores", "cpu cores"), LogicalCoreCount); }
-        }
-
-        /// <summary>
-        /// Gets the family.
-        /// </summary>
-        /// <value>The family.</value>
-        public override string Family
-        {
-            get
-            {
-                var output = GetProcessorValue("Caption", "cpu family");
-
-                switch (MachineEnvironment.Environment.OS.PlatformId)
-                {
-                    // Should always break early...
-                    case PclPlatformId.None:
-                    case PclPlatformId.MaxOSX:
-                    case PclPlatformId.Unix:
-                    case PclPlatformId.Xbox:
-                        break;
-                    // Can use WMI system...
-                    case PclPlatformId.Win32NT:
-                    case PclPlatformId.Win32S:
-                    case PclPlatformId.Win32Windows:
-                    case PclPlatformId.WinCE:
-                        var splitList = output.Split(' ');
-                        for (int i = 0; i < splitList.Length; i++)
-                        {
-                            if (splitList[i] == "Family")
-                            {
-                                output = splitList[i + 1];
-                                break;
-                            }
-                        }
-                        break;
-                }
-
-                return output;
-            }
-        }
-
-        /// <summary>
-        /// Gets the manufacturer.
-        /// </summary>
-        /// <value>The manufacturer.</value>
-        public override string Manufacturer
-        {
-            get { return GetProcessorValue("Manufacturer", "vendor_id"); }
-        }
-
-        /// <summary>
-        /// Gets the model.
-        /// </summary>
-        /// <value>The model.</value>
-        public override string Model
-        {
-            get
-            {
-                var output = GetProcessorValue("Caption", "model");
-
-                switch (MachineEnvironment.Environment.OS.PlatformId)
-                {
-                    // Should always break early...
-                    case PclPlatformId.None:
-                    case PclPlatformId.MaxOSX:
-                    case PclPlatformId.Unix:
-                    case PclPlatformId.Xbox:
-                        break;
-                    // Can use WMI system...
-                    case PclPlatformId.Win32NT:
-                    case PclPlatformId.Win32S:
-                    case PclPlatformId.Win32Windows:
-                    case PclPlatformId.WinCE:
-                        var splitList = output.Split(' ');
-                        for (int i = 0; i < splitList.Length; i++)
-                        {
-                            if (splitList[i] == "Model")
-                            {
-                                output = splitList[i + 1];
-                                break;
-                            }
-                        }
-                        break;
-                }
-
-                return output;
-            }
-        }
-
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>The name.</value>
-        public override string Name
-        {
-            get { return GetProcessorValue("Name", "model name"); }
-        }
-
-        /// <summary>
-        /// Gets the stepping.
-        /// </summary>
-        /// <value>The stepping.</value>
-        public override string Stepping
-        {
-            get
-            {
-                var output = GetProcessorValue("Caption", "stepping");
-
-                switch (MachineEnvironment.Environment.OS.PlatformId)
-                {
-                    // Should always break early...
-                    case PclPlatformId.None:
-                    case PclPlatformId.MaxOSX:
-                    case PclPlatformId.Unix:
-                    case PclPlatformId.Xbox:
-                        break;
-                    // Can use WMI system...
-                    case PclPlatformId.Win32NT:
-                    case PclPlatformId.Win32S:
-                    case PclPlatformId.Win32Windows:
-                    case PclPlatformId.WinCE:
-                        var splitList = output.Split(' ');
-                        for (int i = 0; i < splitList.Length; i++)
-                        {
-                            if (splitList[i] == "Stepping")
-                            {
-                                output = splitList[i + 1];
-                                break;
-                            }
-                        }
-                        break;
-                }
-
-                return output;
-            }
-        }
-
-        #endregion Public Properties
-
-        #region Private Methods
-
-        /// <summary>
-        /// Gets the processor value.
-        /// </summary>
-        /// <param name="windowsKey">The windows key.</param>
-        /// <param name="unixKey">The unix key.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>List&lt;System.String&gt;.</returns>
         ///  Changelog:
-        ///             - 1.0.0 (01-01-2017) - Initial version.
-        private string GetProcessorValue(string windowsKey = null, string unixKey = null)
+        ///             - 1.0.0 (01-30-2017) - Initial version.
+        public override List<string> GetProcessorNames()
         {
-            string output = String.Empty;
+            var output = new List<string>();
             switch (MachineEnvironment.Environment.OS.PlatformId)
             {
                 // Should always break early...
                 case PclPlatformId.None:
                     break;
-                // TODO : /proc/cpuinfo
+                // TODO : ?
                 case PclPlatformId.MaxOSX:
                 case PclPlatformId.Unix:
                     break;
@@ -245,18 +69,92 @@ namespace PclSystemInfo.Modules
                 case PclPlatformId.Win32S:
                 case PclPlatformId.Win32Windows:
                 case PclPlatformId.WinCE:
-                    if (windowsKey != null)
-                    {
-                        var result = WMI.GetWmiComponentKeyValue(WmiComponentName, windowsKey);
-                        if (result.Key != null)
-                            output = result.Value;
-                    }
+                    output = WMI.GetComponentDevices(WmiComponentName);
                     break;
             }
 
             return output;
         }
 
-        #endregion Private Methods
+        /// <summary>
+        /// Gets the processors.
+        /// </summary>
+        /// <param name="deviceId">The device identifier.</param>
+        /// <returns>List&lt;CPU&gt;.</returns>
+        ///  Changelog:
+        ///             - 1.0.0 (01-30-2017) - Initial version.
+        public override List<CPU> GetProcessors(string deviceId = null)
+        {
+            var finalOutput = new List<CPU>();
+            var procs = new Dictionary<string, Dictionary<string, string>>();
+            switch (MachineEnvironment.Environment.OS.PlatformId)
+            {
+                // Should always break early...
+                case PclPlatformId.None:
+                    break;
+                // TODO : ?
+                case PclPlatformId.MaxOSX:
+                case PclPlatformId.Unix:
+                    procs = FileParser.ParseFile("\\proc\\cpuinfo", "processor", "CPU");
+                    break;
+                // TODO
+                case PclPlatformId.Xbox:
+                    break;
+                // Can use WMI system...
+                case PclPlatformId.Win32NT:
+                case PclPlatformId.Win32S:
+                case PclPlatformId.Win32Windows:
+                case PclPlatformId.WinCE:
+                    procs = WMI.GetAllWmiValuesForWmiComponent(WmiComponentName);
+                    break;
+            }
+
+            foreach (var proc in procs.Keys)
+            {
+                if (deviceId == proc || deviceId == null)
+                {
+                    var cpu = new CPU()
+                    {
+                        DeviceId = proc,
+                        LogicalCoreCount = Environment.ProcessorCount
+                    };
+
+                    var splitList = new string[0];
+                    foreach (var procValue in procs[proc])
+                    {
+                        switch (procValue.Key)
+                        {
+                            // WMI Support
+                            case "L3CacheSize": cpu.CacheSize = Convertors.StringToInt(procValue.Value, -1); break;
+                            case "MaxClockSpeed": cpu.ClockSpeed = Convertors.StringToDouble(procValue.Value, -1); break;
+                            case "NumberOfCores": cpu.CoreCount = Convertors.StringToInt(procValue.Value, cpu.LogicalCoreCount); break;
+                            case "Caption":
+                                splitList = procValue.Value.Split(' ');
+                                for (int i = 0; i < splitList.Length; i++)
+                                {
+                                    switch (splitList[i])
+                                    {
+                                        case "Family": cpu.Family = splitList[i + 1]; break;
+                                        case "Model": cpu.Model = splitList[i + 1]; break;
+                                        case "Stepping": cpu.Stepping = splitList[i + 1]; break;
+                                    }
+                                }
+                                break;
+
+                            case "Manufacturer": cpu.Manufacturer = procValue.Value; break;
+                            case "Name": cpu.Name = procValue.Value; break;
+
+                            // UNIX Support
+                        }
+                    }
+
+                    finalOutput.Add(cpu);
+                }
+            }
+
+            return finalOutput;
+        }
+
+        #endregion Public Methods
     }
 }

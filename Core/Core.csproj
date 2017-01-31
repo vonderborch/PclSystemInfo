@@ -37,6 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CPU.cs" />
     <Compile Include="Enums\PclPlatformId.cs" />
     <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Modules\NullGraphics.cs" />

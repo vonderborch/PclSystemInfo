@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Core\Classes\CPU.cs">
+      <Link>Classes\CPU.cs</Link>
+    </Compile>
     <Compile Include="..\..\Core\Classes\GraphicsCard.cs">
       <Link>Classes\GraphicsCard.cs</Link>
     </Compile>
@@ -78,6 +81,7 @@
     <Compile Include="..\..\Core\Modules\NullProcessor.cs">
       <Link>Modules\NullProcessor.cs</Link>
     </Compile>
+    <Compile Include="FileParser.cs" />
     <Compile Include="WMI.cs" />
     <Compile Include="Modules\Graphics.cs" />
     <Compile Include="Modules\Memory.cs" />

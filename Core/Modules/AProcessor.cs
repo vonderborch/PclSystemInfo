@@ -3,10 +3,10 @@
 // Component        : AProcessor.cs
 // Author           : vonderborch
 // Created          : 01-01-2017
-// 
+//
 // Version          : 1.0.0
 // Last Modified By : vonderborch
-// Last Modified On : 01-27-2017
+// Last Modified On : 01-30-2017
 // ***********************************************************************
 // <copyright file="AProcessor.cs">
 //		Copyright ©  2017
@@ -15,10 +15,12 @@
 //      Defines the abstract processor class.
 // </summary>
 //
-// Changelog: 
+// Changelog:
+//            - 1.0.0 (01-30-2017) - Revised how processor information is retrieved.
 //            - 1.0.0 (01-01-2017) - Initial version created.
 // ***********************************************************************
-using System;
+using PclSystemInfo.Classes;
+using System.Collections.Generic;
 
 namespace PclSystemInfo.Modules
 {
@@ -27,62 +29,25 @@ namespace PclSystemInfo.Modules
     /// </summary>
     public abstract class AProcessor
     {
-        #region Public Properties
+        #region Public Methods
 
         /// <summary>
-        /// Gets the size of the cache.
+        /// Gets the processor names.
         /// </summary>
-        /// <value>The size of the cache.</value>
-        public abstract int CacheSize { get; }
+        /// <returns>List&lt;System.String&gt;.</returns>
+        ///  Changelog:
+        ///             - 1.0.0 (01-30-2017) - Initial version.
+        public abstract List<string> GetProcessorNames();
 
         /// <summary>
-        /// Gets the clock speed.
+        /// Gets the processors.
         /// </summary>
-        /// <value>The clock speed.</value>
-        public abstract double ClockSpeed { get; }
+        /// <param name="deviceId">The device identifier.</param>
+        /// <returns>List&lt;CPU&gt;.</returns>
+        ///  Changelog:
+        ///             - 1.0.0 (01-30-2017) - Initial version.
+        public abstract List<CPU> GetProcessors(string deviceId = null);
 
-        /// <summary>
-        /// Gets the core count.
-        /// </summary>
-        /// <value>The core count.</value>
-        public abstract int CoreCount { get; }
-
-        /// <summary>
-        /// Gets the family.
-        /// </summary>
-        /// <value>The family.</value>
-        public abstract string Family { get; }
-
-        /// <summary>
-        /// Gets the logical core count.
-        /// </summary>
-        /// <value>The logical core count.</value>
-        public int LogicalCoreCount
-        {
-            get { return Environment.ProcessorCount; }
-        }
-
-        /// <summary>
-        /// Gets the manufacturer.
-        /// </summary>
-        /// <value>The manufacturer.</value>
-        public abstract string Manufacturer { get; }
-        /// <summary>
-        /// Gets the model.
-        /// </summary>
-        /// <value>The model.</value>
-        public abstract string Model { get; }
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>The name.</value>
-        public abstract string Name { get; }
-        /// <summary>
-        /// Gets the stepping.
-        /// </summary>
-        /// <value>The stepping.</value>
-        public abstract string Stepping { get; }
-
-        #endregion Public Properties
+        #endregion Public Methods
     }
 }
