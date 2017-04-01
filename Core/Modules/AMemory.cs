@@ -6,7 +6,7 @@
 // 
 // Version          : 1.0.0
 // Last Modified By : vonderborch
-// Last Modified On : 01-30-2017
+// Last Modified On : 03-31-2017
 // ***********************************************************************
 // <copyright file="AMemory.cs">
 //		Copyright ©  2017
@@ -16,8 +16,12 @@
 // </summary>
 //
 // Changelog: 
+//            - 1.0.0 (03-31-2017) - Added support for physical memory.
 //            - 1.0.0 (01-30-2017) - Initial version created.
 // ***********************************************************************
+using PclSystemInfo.Classes;
+using System.Collections.Generic;
+
 namespace PclSystemInfo.Modules
 {
     /// <summary>
@@ -59,6 +63,12 @@ namespace PclSystemInfo.Modules
         {
             get { return (AvailableBytes / TotalBytes) * 100; }
         }
+
+        /// <summary>
+        /// Gets the average memory clock speed. NOTE: GetPhysicalMemory() needs to be run at least once for this to be set properly.
+        /// </summary>
+        /// <value>The average memory clock speed.</value>
+        public double AverageMemoryClockSpeed { get; protected set; } = 0;
 
         /// <summary>
         /// Gets the total bytes.
@@ -121,5 +131,26 @@ namespace PclSystemInfo.Modules
         }
 
         #endregion Public Properties
+
+        #region Public Functions
+
+        /// <summary>
+        /// Gets the physical memory names.
+        /// </summary>
+        /// <returns>List&lt;System.String&gt;.</returns>
+        ///  Changelog:
+        ///             - 1.0.0 (03-31-2017) - Initial version.
+        public abstract List<string> GetPhysicalMemoryNames();
+
+        /// <summary>
+        /// Gets the physical memory.
+        /// </summary>
+        /// <param name="deviceLocator">The device locator.</param>
+        /// <returns>List&lt;PhysicalMemory&gt;.</returns>
+        ///  Changelog:
+        ///             - 1.0.0 (03-31-2017) - Initial version.
+        public abstract List<PhysicalMemory> GetPhysicalMemory(string deviceLocator = null);
+
+        #endregion Public Functions
     }
 }

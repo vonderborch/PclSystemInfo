@@ -12,7 +12,9 @@ namespace DesktopTesting
     {
         static void Main(string[] args)
         {
-            var a = MachineEnvironment.Environment.Memory.TotalBytes;
+            var a = MachineEnvironment.Environment.Memory.AvailableBytes;
+
+            var b = MachineEnvironment.Environment.Memory.GetPhysicalMemoryNames();
 
             var x = WMI.GetAllWmiValuesForWmiComponent("Win32_Processor");
             var y = WMI.GetAllWmiValuesForWmiComponent("Win32_VideoController");

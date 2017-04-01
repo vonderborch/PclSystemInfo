@@ -38,6 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CPU.cs" />
+    <Compile Include="Classes\PhysicalMemory.cs" />
+    <Compile Include="Classes\ProcessorCache.cs" />
     <Compile Include="Enums\PclPlatformId.cs" />
     <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Modules\AMemory.cs" />

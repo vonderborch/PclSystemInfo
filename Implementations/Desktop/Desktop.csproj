@@ -48,6 +48,12 @@
     <Compile Include="..\..\Core\Classes\GraphicsCard.cs">
       <Link>Classes\GraphicsCard.cs</Link>
     </Compile>
+    <Compile Include="..\..\Core\Classes\PhysicalMemory.cs">
+      <Link>Classes\PhysicalMemory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Core\Classes\ProcessorCache.cs">
+      <Link>Classes\ProcessorCache.cs</Link>
+    </Compile>
     <Compile Include="..\..\Core\Enums\PclPlatformId.cs">
       <Link>Enums\PclPlatformId.cs</Link>
     </Compile>

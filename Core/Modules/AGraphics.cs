@@ -6,7 +6,7 @@
 // 
 // Version          : 1.0.0
 // Last Modified By : vonderborch
-// Last Modified On : 01-30-2017
+// Last Modified On : 03-31-2017
 // ***********************************************************************
 // <copyright file="AGraphics.cs">
 //		Copyright ©  2017
@@ -16,6 +16,7 @@
 // </summary>
 //
 // Changelog: 
+//            - 1.0.0 (03-31-2017) - Added more details on the CPU cache.
 //            - 1.0.0 (01-30-2017) - Initial version created.
 // ***********************************************************************
 using PclSystemInfo.Classes;
